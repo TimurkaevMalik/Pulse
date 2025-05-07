@@ -74,8 +74,8 @@
 "days" = "%d days";
 "days.fromTwoToFour" = "%d days";
 
-"allTrackers" = "All trackers";
-"trackersForToday" = "Trackers for today";
+"allTasks" = "All tasks";
+"tasksForToday" = "Tasks for today";
 "completedOnes" = "Completed";
 "notCompletedOnes" = "Not Completed";
 "completedTrackers" = "Completed trackers";

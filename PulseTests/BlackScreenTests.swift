@@ -23,7 +23,7 @@ final class BlackScreenTests: XCTestCase {
     
     func testBlackScreenZeroTrackers() {
         
-        UserDefaultsManager.chosenFilter = "allTrackers"
+        UserDefaultsManager.chosenFilter = "allTasks"
         
         assertSnapshot(matching: viewController, as: .image)
     }

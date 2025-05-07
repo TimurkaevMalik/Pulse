@@ -1,5 +1,5 @@
 //
-//  TrackerCategory.swift
+//  TaskCategory.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 12.04.2024.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TrackerCategory {
+struct TaskCategory {
     
     let titleOfCategory: String
-    let trackersArray: [Tracker]
+    let tasksArray: [TaskData]
 }

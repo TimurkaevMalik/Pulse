@@ -11,7 +11,7 @@ final class CategoryViewModel {
     
     weak var newCategoryDelegate: NewCategoryViewProtocol?
     private weak var categoryModelDelegate: CategoryModelDelegate?
-    private let trackerCategoryStore: TrackerCategoryStore
+    private let trackerCategoryStore: TaskCategoryStore
     
     private(set) var newCategory: String?
     private(set) var chosenCategory: String? {
@@ -30,7 +30,7 @@ final class CategoryViewModel {
     var categoriesBinding: Binding<[String]>?
     
     
-    init(categoryStore: TrackerCategoryStore,
+    init(categoryStore: TaskCategoryStore,
          chosenCategory: String?,
          categoryModelDelegate: CategoryModelDelegate) {
         
@@ -62,7 +62,7 @@ final class CategoryViewModel {
         categoryModelDelegate?.didChooseCategory(category)
     }
     
-    func storeNewCategory(_ category: TrackerCategory) {
+    func storeNewCategory(_ category: TaskCategory) {
         trackerCategoryStore.storeCategory(category)
     }
     
@@ -77,13 +77,13 @@ final class CategoryViewModel {
         return convertedCategories.map({ $0.titleOfCategory })
     }
     
-    private func convertToCategotyArray( _ response: [TrackerCategoryCoreData]) -> [TrackerCategory] {
+    private func convertToCategotyArray( _ response: [TaskCategoryCoreData]) -> [TaskCategory] {
         
-        var categoryArray: [TrackerCategory] = []
+        var categoryArray: [TaskCategory] = []
         for categoryCoreData in response {
             
             if let title = categoryCoreData.titleOfCategory {
-                let category = TrackerCategory(titleOfCategory: title, trackersArray: [])
+                let category = TaskCategory(titleOfCategory: title, tasksArray: [])
                 categoryArray.append(category)
             }
         }
@@ -95,12 +95,12 @@ final class CategoryViewModel {
 }
 
 extension CategoryViewModel: CategoryStoreDelegate {
-    func didStoreCategory(_ category: TrackerCategory) {
+    func didStoreCategory(_ category: TaskCategory) {
         categories.append(category.titleOfCategory)
         newCategoryDelegate?.didStoreNewCategory()
     }
     
-    func storeDidUpdate(category: TrackerCategory) {
+    func storeDidUpdate(category: TaskCategory) {
         newCategoryDelegate?.categoryAlreadyExists()
     }
 }

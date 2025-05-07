@@ -8,21 +8,21 @@
 import UIKit
 
 
-protocol TrackerStoreDelegate: AnyObject {
-    func didUpdate(tracker: Tracker, categoryTitle: String)
-    func didDelete(tracker: Tracker)
-    func didAdd(tracker: Tracker, with categoryTitle: String)
+protocol TaskStoreDelegate: AnyObject {
+    func didUpdate(task: TaskData, categoryTitle: String)
+    func didDelete(task: TaskData)
+    func didAdd(task: TaskData, with categoryTitle: String)
 }
 
 protocol CategoryStoreDelegate: AnyObject {
-    func didStoreCategory(_ category: TrackerCategory)
-    func storeDidUpdate(category: TrackerCategory)
+    func didStoreCategory(_ category: TaskCategory)
+    func storeDidUpdate(category: TaskCategory)
 }
 
 protocol RecordStoreDelegate: AnyObject {
-    func didUpdate(record: TrackerRecord)
-    func didDelete(record: TrackerRecord)
-    func didAdd(record: TrackerRecord)
+    func didUpdate(record: TaskRecord)
+    func didDelete(record: TaskRecord)
+    func didAdd(record: TaskRecord)
 }
 
 protocol TabBarControllerDelegate: AnyObject {
@@ -32,7 +32,7 @@ protocol TabBarControllerDelegate: AnyObject {
 
 protocol PulseViewControllerDelegate: AnyObject {
     func dismisTaskTypeController()
-    func addNewTracker(trackerCategory: TrackerCategory)
+    func addNewTracker(trackerCategory: TaskCategory)
     func didEditTracker(tracker: TrackerToEdit)
 }
 

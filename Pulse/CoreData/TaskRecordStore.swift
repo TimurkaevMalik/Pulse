@@ -14,7 +14,7 @@ protocol RecordStoreProtocol {
     func storeRecord(_ record: TaskRecord)
     func updateRecord(_ record: TaskRecord)
     func deleteRecord(_ record: TaskRecord)
-    func deleteAllRecordsOfTracker(_ id: UUID)
+    func deleteAllRecordsOfTask(_ id: UUID)
     func fetchAllConvertedRecords() -> [TaskRecord]
     func fetchConvertedRecordWith(id: UUID) -> TaskRecord?
 }
@@ -24,7 +24,7 @@ final class TaskRecordStore: NSObject {
     private weak var delegate: RecordStoreDelegate?
     private let appDelegate: AppDelegate
     internal let context: NSManagedObjectContext
-    private var fetchedResultController: NSFetchedResultsController<TrackerRecordCoreData>?
+    private var fetchedResultController: NSFetchedResultsController<TaskRecordCoreData>?
     
     private var dateFormatter: DateFormatter {
         
@@ -40,7 +40,7 @@ final class TaskRecordStore: NSObject {
         return formatter
     }
     
-    private let recordName = "TrackerRecordCoreData"
+    private let recordName = "TaskRecordCoreData"
     private let dateName = "DateCoreData"
     
     
@@ -50,8 +50,8 @@ final class TaskRecordStore: NSObject {
         self.context = appDelegate.persistentContainer.viewContext
         super.init()
         
-        let sortDescription = NSSortDescriptor(keyPath: \TrackerRecordCoreData.id, ascending: false)
-        let fetchRequest = NSFetchRequest<TrackerRecordCoreData>(entityName: recordName)
+        let sortDescription = NSSortDescriptor(keyPath: \TaskRecordCoreData.id, ascending: false)
+        let fetchRequest = NSFetchRequest<TaskRecordCoreData>(entityName: recordName)
         fetchRequest.sortDescriptors = [sortDescription]
         
         let controller = NSFetchedResultsController(
@@ -66,8 +66,8 @@ final class TaskRecordStore: NSObject {
     }
     
     
-    private func fetchAllRecords() -> [TrackerRecordCoreData] {
-        let fetchRequest = NSFetchRequest<TrackerRecordCoreData>(entityName: recordName)
+    private func fetchAllRecords() -> [TaskRecordCoreData] {
+        let fetchRequest = NSFetchRequest<TaskRecordCoreData>(entityName: recordName)
         
         do {
             let records = try context.fetch(fetchRequest)
@@ -80,8 +80,8 @@ final class TaskRecordStore: NSObject {
         }
     }
     
-    private func fetchRecordWith(id: UUID) -> TrackerRecordCoreData? {
-        let fetchRequest = NSFetchRequest<TrackerRecordCoreData>(entityName: recordName)
+    private func fetchRecordWith(id: UUID) -> TaskRecordCoreData? {
+        let fetchRequest = NSFetchRequest<TaskRecordCoreData>(entityName: recordName)
         
         do {
             let recordCoreData = try context.fetch(fetchRequest).first(where: { $0.id == id })
@@ -94,7 +94,7 @@ final class TaskRecordStore: NSObject {
         }
     }
     
-    private func getDateArrayFromStrings(of record: TrackerRecordCoreData) -> [Date] {
+    private func getDateArrayFromStrings(of record: TaskRecordCoreData) -> [Date] {
         
         var dates: [Date] = []
         if  let datesString = record.datesString?.components(separatedBy: ",") {
@@ -117,7 +117,7 @@ extension TaskRecordStore: RecordStoreProtocol {
         
         guard let recordEntityDescription = NSEntityDescription.entity(forEntityName: recordName, in: context) else { return }
         
-        let recordCoreData = TrackerRecordCoreData(entity: recordEntityDescription, insertInto: context)
+        let recordCoreData = TaskRecordCoreData(entity: recordEntityDescription, insertInto: context)
         
         recordCoreData.id = record.id
         
@@ -203,7 +203,7 @@ extension TaskRecordStore: RecordStoreProtocol {
         appDelegate.saveContext()
     }
     
-    func deleteAllRecordsOfTracker(_ id: UUID) {
+    func deleteAllRecordsOfTask(_ id: UUID) {
         guard let recordCoreData = fetchRecordWith(id: id) else { return }
         
         context.delete(recordCoreData)
@@ -216,7 +216,7 @@ extension TaskRecordStore: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         guard
-            let recordCoreData = anObject as? TrackerRecordCoreData,
+            let recordCoreData = anObject as? TaskRecordCoreData,
             let id = recordCoreData.id
         else { return }
         

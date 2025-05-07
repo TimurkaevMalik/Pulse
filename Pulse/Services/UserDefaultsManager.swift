@@ -30,15 +30,15 @@ class UserDefaultsManager {
             
             if newValue == true {
                 
-                chosenFilter = "allTrackers"
+                chosenFilter = "allTasks"
                 
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                     return
                 }
                 
-                let trackerCategoryStore = TrackerCategoryStore(appDelegate: appDelegate)
+                let trackerCategoryStore = TaskCategoryStore(appDelegate: appDelegate)
                 
-                trackerCategoryStore.storeCategory(TrackerCategory(titleOfCategory: "Pined", trackersArray: []))
+                trackerCategoryStore.storeCategory(TaskCategory(titleOfCategory: "Pined", tasksArray: []))
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  TrackerCategoryStore.swift
+//  TaskCategoryStore.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 06.05.2024.
@@ -9,22 +9,22 @@ import UIKit
 import CoreData
 
 
-final class TrackerCategoryStore: NSObject {
+final class TaskCategoryStore: NSObject {
     
     weak var delegate: CategoryStoreDelegate?
     private let appDelegate: AppDelegate
     private let context: NSManagedObjectContext
-    private var fectchedResultController: NSFetchedResultsController<TrackerCategoryCoreData>?
+    private var fectchedResultController: NSFetchedResultsController<TaskCategoryCoreData>?
     
-    private let categoryName = "TrackerCategoryCoreData"
+    private let categoryName = "TaskCategoryCoreData"
     
     init(appDelegate: AppDelegate){
         self.appDelegate = appDelegate
         self.context = appDelegate.persistentContainer.viewContext
         super.init()
         
-        let sortDescriptions = NSSortDescriptor(keyPath: \TrackerCategoryCoreData.titleOfCategory, ascending: true)
-        let fetchRequest = NSFetchRequest<TrackerCategoryCoreData>(entityName: categoryName)
+        let sortDescriptions = NSSortDescriptor(keyPath: \TaskCategoryCoreData.titleOfCategory, ascending: true)
+        let fetchRequest = NSFetchRequest<TaskCategoryCoreData>(entityName: categoryName)
         fetchRequest.sortDescriptors = [sortDescriptions]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
@@ -37,7 +37,7 @@ final class TrackerCategoryStore: NSObject {
     }
     
     
-    func storeCategory(_ category: TrackerCategory) {
+    func storeCategory(_ category: TaskCategory) {
         
         guard fetchCategory(with: category.titleOfCategory) == nil else {
             updateCategory(category)
@@ -48,14 +48,14 @@ final class TrackerCategoryStore: NSObject {
             return
         }
         
-        let categoryCoreData = TrackerCategoryCoreData(entity: categoryEntityDescription, insertInto: context)
+        let categoryCoreData = TaskCategoryCoreData(entity: categoryEntityDescription, insertInto: context)
         
         categoryCoreData.titleOfCategory = category.titleOfCategory
         
         appDelegate.saveContext()
     }
     
-    func updateCategory(_ category: TrackerCategory) {
+    func updateCategory(_ category: TaskCategory) {
         
         guard let categoryCoreData = fetchCategory(with: category.titleOfCategory) else {
             return
@@ -92,14 +92,14 @@ final class TrackerCategoryStore: NSObject {
         }
     }
     
-    func fetchAllCategories() -> [TrackerCategoryCoreData]? {
+    func fetchAllCategories() -> [TaskCategoryCoreData]? {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: categoryName)
-        let sortDescriptors = NSSortDescriptor(keyPath: \TrackerCategoryCoreData.titleOfCategory, ascending: true)
+        let sortDescriptors = NSSortDescriptor(keyPath: \TaskCategoryCoreData.titleOfCategory, ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptors]
         
         do {
-            let response = try context.fetch(fetchRequest) as? [TrackerCategoryCoreData]
+            let response = try context.fetch(fetchRequest) as? [TaskCategoryCoreData]
             return response
             
         } catch let error as NSError {
@@ -108,8 +108,8 @@ final class TrackerCategoryStore: NSObject {
         }
     }
     
-    func fetchCategory(with title: String) -> TrackerCategoryCoreData? {
-        let fetchRequest = NSFetchRequest<TrackerCategoryCoreData>(entityName: categoryName)
+    func fetchCategory(with title: String) -> TaskCategoryCoreData? {
+        let fetchRequest = NSFetchRequest<TaskCategoryCoreData>(entityName: categoryName)
         
         do {
             let categories = try context.fetch(fetchRequest)
@@ -123,27 +123,27 @@ final class TrackerCategoryStore: NSObject {
         }
     }
     
-    func deleteTrackerWith(_ id: UUID, from categoryTitle: String) {
+    func deleteTaskWith(_ id: UUID, from categoryTitle: String) {
         
         guard
             let categoryCoreData = fetchCategory(with: categoryTitle),
-            let tracker = categoryCoreData.trackersArray?.first(where: { ($0 as? TrackerCoreData)?.id == id }) as? NSManagedObject
+            let task = categoryCoreData.tasksArray?.first(where: { ($0 as? TaskCoreData)?.id == id }) as? NSManagedObject
         else {
             return
         }
     
-        context.delete(tracker)
+        context.delete(task)
         
         appDelegate.saveContext()
     }
     
-    func convertToCategotyArray( _ response: [TrackerCategoryCoreData]) -> [TrackerCategory] {
+    func convertToCategotyArray( _ response: [TaskCategoryCoreData]) -> [TaskCategory] {
         
-        var categoryArray: [TrackerCategory] = []
+        var categoryArray: [TaskCategory] = []
         for categoryCoreData in response {
             
             if let title = categoryCoreData.titleOfCategory {
-                let category = TrackerCategory(titleOfCategory: title, trackersArray: [])
+                let category = TaskCategory(titleOfCategory: title, tasksArray: [])
                 categoryArray.append(category)
             }
         }
@@ -151,13 +151,13 @@ final class TrackerCategoryStore: NSObject {
         return categoryArray
     }
     
-    private func convertCoreDataToCategory( _ categoryCoreData: TrackerCategoryCoreData) -> TrackerCategory? {
+    private func convertCoreDataToCategory( _ categoryCoreData: TaskCategoryCoreData) -> TaskCategory? {
         
-        var category: TrackerCategory
+        var category: TaskCategory
         
         if let title = categoryCoreData.titleOfCategory {
             
-            category = TrackerCategory(titleOfCategory: title, trackersArray: [])
+            category = TaskCategory(titleOfCategory: title, tasksArray: [])
             
             return category
         }
@@ -166,12 +166,12 @@ final class TrackerCategoryStore: NSObject {
     }
 }
 
-extension TrackerCategoryStore: NSFetchedResultsControllerDelegate {
+extension TaskCategoryStore: NSFetchedResultsControllerDelegate {
     
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         guard
-            let categoryCoreData = anObject as? TrackerCategoryCoreData,
+            let categoryCoreData = anObject as? TaskCategoryCoreData,
             let category = convertCoreDataToCategory(categoryCoreData)
         else { return }
         

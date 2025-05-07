@@ -1,5 +1,5 @@
 //
-//  Tracker.swift
+//  TaskData.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 12.04.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Tracker {
+struct TaskData {
     
     let id: UUID
     let name: String

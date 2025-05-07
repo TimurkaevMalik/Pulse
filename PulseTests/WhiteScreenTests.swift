@@ -22,7 +22,7 @@ final class WhiteScreenTests: XCTestCase {
     
     func testZeroTrackers() {
         
-        UserDefaultsManager.chosenFilter = "allTrackers"
+        UserDefaultsManager.chosenFilter = "allTasks"
         
         assertSnapshot(matching: viewController, as: .image)
     }

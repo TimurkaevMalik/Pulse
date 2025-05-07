@@ -10,7 +10,7 @@ import UIKit
 
 final class TabBarControler: UITabBarController {
     
-    private let trackerViewController = PulseViewController()
+    private let pulseViewController = PulseViewController()
     private let statisticViewController = StatisticViewController()
     
     private lazy var filterButton = UIButton()
@@ -38,7 +38,7 @@ final class TabBarControler: UITabBarController {
         
         AnalyticsService.report(event: "click", params: ["screen": "\(self)", "item": "filter"])
         
-        let viewController = FilterViewController(delegate: trackerViewController)
+        let viewController = FilterViewController(delegate: pulseViewController)
         
         present(viewController, animated: true)
     }
@@ -56,12 +56,12 @@ final class TabBarControler: UITabBarController {
         
         let navigationController = UINavigationController()
         
-        let trackerItemTitle = NSLocalizedString("trackers", comment: "Text displayed on the trackerController item")
+        let taskItemTitle = NSLocalizedString("trackers", comment: "Text displayed on the trackerController item")
         let statisticItemTitle = NSLocalizedString("statistic", comment: "Text displayed on the statisticController item")
         
-        trackerViewController.delegate = self
-        trackerViewController.tabBarItem = UITabBarItem(
-            title: trackerItemTitle,
+        pulseViewController.delegate = self
+        pulseViewController.tabBarItem = UITabBarItem(
+            title: taskItemTitle,
             image: UIImage(named: "TrackerBarItem"),
             selectedImage: nil)
         
@@ -70,7 +70,7 @@ final class TabBarControler: UITabBarController {
             image: UIImage(named: "StatisticBarItem"),
             selectedImage: nil)
         
-        navigationController.viewControllers = [trackerViewController]
+        navigationController.viewControllers = [pulseViewController]
         
         self.viewControllers = [navigationController,
                                 statisticViewController]

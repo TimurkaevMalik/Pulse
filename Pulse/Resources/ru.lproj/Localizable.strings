@@ -74,8 +74,8 @@
 "days" = "%d дней";
 "days.fromTwoToFour" = "%d дня";
 
-"allTrackers" = "Все трекеры";
-"trackersForToday" = "Трекеры на сегодня";
+"allTasks" = "Все задачи";
+"tasksForToday" = "Задачи на сегодня";
 "completedOnes" = "Завершенные";
 "notCompletedOnes" = "Не Завершенные";
 "completedTrackers" = "Трекеров завершено";

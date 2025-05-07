@@ -37,7 +37,7 @@ final class TaskTypeController: UIViewController {
         
         guard let delegate else { return }
         
-        let type = ActionType.create(value: TrackerType.habbit)
+        let type = ActionType.create(value: TaskType.habbit)
         let viewController = ChosenTrackerController(actionType: type, tracker: nil, delegate: delegate)
         
         present(viewController, animated: true)
@@ -47,7 +47,7 @@ final class TaskTypeController: UIViewController {
         
         guard let delegate else { return }
         
-        let type = ActionType.create(value: TrackerType.irregularEvent)
+        let type = ActionType.create(value: TaskType.irregularEvent)
         let viewController = ChosenTrackerController(actionType: type, tracker: nil, delegate: delegate)
         
         present(viewController, animated: true)

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23D60" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="TrackerCategoryCoreData" representedClassName="TrackerCategoryCoreData" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24D81" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="TaskCategoryCoreData" representedClassName="TaskCategoryCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="titleOfCategory" attributeType="String"/>
-        <relationship name="trackersArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="trackerCategory" inverseEntity="TrackerCoreData"/>
+        <relationship name="tasksArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskCoreData" inverseName="taskCategory" inverseEntity="TaskCoreData"/>
     </entity>
-    <entity name="TrackerCoreData" representedClassName="TrackerCoreData" syncable="YES" codeGenerationType="class">
+    <entity name="TaskCoreData" representedClassName="TaskCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="color" attributeType="String"/>
         <attribute name="emoji" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="schedule" optional="YES" attributeType="String" valueTransformerName="ScheduleValueTransformer"/>
-        <relationship name="trackerCategory" maxCount="1" deletionRule="Nullify" destinationEntity="TrackerCategoryCoreData" inverseName="trackersArray" inverseEntity="TrackerCategoryCoreData"/>
+        <relationship name="taskCategory" maxCount="1" deletionRule="Nullify" destinationEntity="TaskCategoryCoreData" inverseName="tasksArray" inverseEntity="TaskCategoryCoreData"/>
     </entity>
-    <entity name="TrackerRecordCoreData" representedClassName="TrackerRecordCoreData" syncable="YES" codeGenerationType="class">
+    <entity name="TaskRecordCoreData" representedClassName="TaskRecordCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="datesString" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>

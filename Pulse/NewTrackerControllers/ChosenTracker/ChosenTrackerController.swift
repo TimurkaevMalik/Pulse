@@ -129,7 +129,7 @@ class ChosenTrackerController: UIViewController {
             
         case .create(let value):
             
-            if value == TrackerType.habbit {
+            if value == TaskType.habbit {
                 guard !scheduleOfTracker.isEmpty else {
                     showWarningLabel(with: fieldsfullnessText)
                     highLightButton()
@@ -137,14 +137,14 @@ class ChosenTrackerController: UIViewController {
                 }
             }
             
-            let newTracker = Tracker(id: UUID(), name: name, color: color, emoji: emoji, schedule: scheduleOfTracker)
+            let newTracker = TaskData(id: UUID(), name: name, color: color, emoji: emoji, schedule: scheduleOfTracker)
             
-            let newCategory = TrackerCategory(titleOfCategory: nameOfCategory, trackersArray: [newTracker])
+            let newCategory = TaskCategory(titleOfCategory: nameOfCategory, tasksArray: [newTracker])
             
             delegate?.addNewTracker(trackerCategory: newCategory)
             
         case .edit(let value):
-            if value == TrackerType.habbit {
+            if value == TaskType.habbit {
                 guard !scheduleOfTracker.isEmpty else {
                     showWarningLabel(with: fieldsfullnessText)
                     highLightButton()
@@ -187,7 +187,7 @@ class ChosenTrackerController: UIViewController {
         switch actionType {
             
         case .create(value: let value):
-            if value == TrackerType.irregularEvent {
+            if value == TaskType.irregularEvent {
                 tableViewCells.append(categoryCellTitle)
                 
                 configureScrollView(contentHeight: 1.13)
@@ -201,7 +201,7 @@ class ChosenTrackerController: UIViewController {
             
         case .edit(value: let value):
             
-            if value == TrackerType.irregularEvent {
+            if value == TaskType.irregularEvent {
                 
                 tableViewCells.append(categoryCellTitle)
                 configureScrollView(contentHeight: 1.13)
@@ -446,22 +446,22 @@ class ChosenTrackerController: UIViewController {
         switch actionType {
         case .create(let value):
             
-            if value ==  TrackerType.habbit {
+            if value ==  TaskType.habbit {
                 
                 return NSLocalizedString("habbitController.title", comment: "Text displayed on the top of screen")
                 
-            } else if value == TrackerType.irregularEvent {
+            } else if value == TaskType.irregularEvent {
                 
                 return NSLocalizedString("eventController.title", comment: "Text displayed on the top of screen")
             }
             
         case .edit(let value):
             
-            if value ==  TrackerType.habbit {
+            if value ==  TaskType.habbit {
                 
                 return NSLocalizedString("habbitController.editing.title", comment: "Text displayed on the top of screen")
                 
-            } else if value == TrackerType.irregularEvent {
+            } else if value == TaskType.irregularEvent {
                 
                 return NSLocalizedString("eventController.editing.title", comment: "Text displayed on the top of screen")
             }
@@ -632,7 +632,7 @@ extension ChosenTrackerController: UITableViewDelegate {
                 return
             }
             
-            let categoryStore = TrackerCategoryStore(appDelegate: appDelegate)
+            let categoryStore = TaskCategoryStore(appDelegate: appDelegate)
             let viewModel = CategoryViewModel(categoryStore: categoryStore,
                                               chosenCategory: nameOfCategory, categoryModelDelegate: self)
             
