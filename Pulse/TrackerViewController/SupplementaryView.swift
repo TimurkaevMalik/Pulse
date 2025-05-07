@@ -1,6 +1,6 @@
 //
 //  SupplementaryView.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 16.04.2024.
 //

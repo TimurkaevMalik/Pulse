@@ -1,27 +1,26 @@
 //
-//  BlackScreenTests.swift
-//  TrackerTests
+//  TrackerTests.swift
+//  PulseTests
 //
-//  Created by Malik Timurkaev on 02.06.2024.
+//  Created by Malik Timurkaev on 27.05.2024.
 //
 
 import XCTest
 import SnapshotTesting
 @testable import Tracker
 
+final class WhiteScreenTests: XCTestCase {
 
-final class BlackScreenTests: XCTestCase {
-    
     let viewController = TabBarControler()
     
-    func testBlackScreenTrackersWasntFound() {
+    func testTrackersWasntFound() {
         
         UserDefaultsManager.chosenFilter = "completedOnes"
         
         assertSnapshot(matching: viewController, as: .image)
     }
     
-    func testBlackScreenZeroTrackers() {
+    func testZeroTrackers() {
         
         UserDefaultsManager.chosenFilter = "allTrackers"
         

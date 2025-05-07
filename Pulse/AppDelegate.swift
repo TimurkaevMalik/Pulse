@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 04.04.2024.
 //

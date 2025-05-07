@@ -218,13 +218,13 @@
 			path = ChosenTracker;
 			sourceTree = "<group>";
 		};
-		BC40FEF82C048B3100FE4668 /* TrackerTests */ = {
+		BC40FEF82C048B3100FE4668 /* PulseTests */ = {
 			isa = PBXGroup;
 			children = (
 				BC40FEF92C048B3100FE4668 /* WhiteScreenTests.swift */,
 				BC988C192C0CE52B002187FD /* BlackScreenTests.swift */,
 			);
-			path = TrackerTests;
+			path = PulseTests;
 			sourceTree = "<group>";
 		};
 		BC5E5DBA2BC9A16300BD7655 /* Models */ = {
@@ -318,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				BCC82EE22BBEE8710042D467 /* Pulse */,
-				BC40FEF82C048B3100FE4668 /* TrackerTests */,
+				BC40FEF82C048B3100FE4668 /* PulseTests */,
 				BCC82EE12BBEE8710042D467 /* Products */,
 				346359C799D9996DA70A958E /* Pods */,
 				73B64EEA17C4969B0132EA40 /* Frameworks */,
@@ -650,7 +650,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.TrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.PulseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -674,7 +674,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.TrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.PulseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

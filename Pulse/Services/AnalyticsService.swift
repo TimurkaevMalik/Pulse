@@ -1,6 +1,6 @@
 //
 //  AnalyticsService.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 03.06.2024.
 //

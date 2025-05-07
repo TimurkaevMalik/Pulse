@@ -1,6 +1,6 @@
 //
 //  CattegoryOfTracker.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 19.04.2024.
 //

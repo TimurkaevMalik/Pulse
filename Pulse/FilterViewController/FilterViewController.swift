@@ -1,6 +1,6 @@
 //
 //  FilterViewController.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 01.06.2024.
 //
