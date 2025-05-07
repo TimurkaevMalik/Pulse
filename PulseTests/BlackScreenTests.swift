@@ -7,21 +7,21 @@
 
 import XCTest
 import SnapshotTesting
-@testable import Tracker
+@testable import Pulse
 
 
 final class BlackScreenTests: XCTestCase {
     
     let viewController = TabBarControler()
     
-    func testBlackScreenTrackersWasntFound() {
+    func testBlackScreenTasksWasntFound() {
         
         UserDefaultsManager.chosenFilter = "completedOnes"
         
         assertSnapshot(matching: viewController, as: .image)
     }
     
-    func testBlackScreenZeroTrackers() {
+    func testBlackScreenZeroTasks() {
         
         UserDefaultsManager.chosenFilter = "allTasks"
         

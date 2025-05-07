@@ -7,20 +7,20 @@
 
 import XCTest
 import SnapshotTesting
-@testable import Tracker
+@testable import Pulse
 
 final class WhiteScreenTests: XCTestCase {
 
     let viewController = TabBarControler()
     
-    func testTrackersWasntFound() {
+    func testTasksWasntFound() {
         
         UserDefaultsManager.chosenFilter = "completedOnes"
         
         assertSnapshot(matching: viewController, as: .image)
     }
     
-    func testZeroTrackers() {
+    func testZeroTasks() {
         
         UserDefaultsManager.chosenFilter = "allTasks"
         

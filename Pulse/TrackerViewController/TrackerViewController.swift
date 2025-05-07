@@ -229,7 +229,7 @@ final class PulseViewController: UIViewController {
     }
     
     private func addTitleAndSearchControllerToNavBar(){
-        let tasksTopTitle = NSLocalizedString("trackers", comment: "Text displayed on the top of search bar")
+        let tasksTopTitle = NSLocalizedString("tasks", comment: "Text displayed on the top of search bar")
         navigationItem.title = tasksTopTitle
         navigationItem.searchController = searchController
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -456,7 +456,7 @@ final class PulseViewController: UIViewController {
         } else {
             let emptyStateText = NSLocalizedString("whatShouldWeTrack", comment: "")
             centralPlugLabel.text = emptyStateText
-            centralPlugImage.image = UIImage(named: "TrackerPlug")
+            centralPlugImage.image = UIImage(named: "TaskPlug")
         }
     }
 }
@@ -697,14 +697,14 @@ extension PulseViewController: CollectionViewCellDelegate {
         
         let type = task.schedule.isEmpty ? ActionType.edit(value: TaskType.irregularEvent) : ActionType.edit(value: TaskType.habbit)
         
-        let trackerToEdit = TrackerToEdit(
+        let taskToEdit = TaskToEdit(
             titleOfCategory: category.titleOfCategory, id: task.id,
             name: task.name, color: task.color,
             emoji: task.emoji, schedule: task.schedule,
             daysCount: String(format: daysText, daysCount ?? 0))
         
-        let viewController = ChosenTrackerController(
-            actionType: type, tracker: trackerToEdit,
+        let viewController = ChosenTaskController(
+            actionType: type, task: taskToEdit,
             delegate: self)
         
         present(viewController, animated: true)
@@ -714,10 +714,10 @@ extension PulseViewController: CollectionViewCellDelegate {
         
         AnalyticsService.report(event: "click", params: ["screen": "\(self)", "item": "delete"])
         
-        let tracker = visibleTasks[indexPath.section].tasksArray[indexPath.row]
+        let task = visibleTasks[indexPath.section].tasksArray[indexPath.row]
         
-        taskStore?.deleteTaskWith(id: tracker.id)
-        taskRecordStore?.deleteAllRecordsOfTask(tracker.id)
+        taskStore?.deleteTaskWith(id: task.id)
+        taskRecordStore?.deleteAllRecordsOfTask(task.id)
     }
     
     func cellPlusButtonTapped(_ cell: CollectionViewCell) {
@@ -730,22 +730,22 @@ extension PulseViewController: CollectionViewCellDelegate {
         else { return }
         
         let category = visibleTasks[indexPath.section]
-        let tracker = category.tasksArray[indexPath.row]
-        let idOfCell = tracker.id
+        let task = category.tasksArray[indexPath.row]
+        let idOfCell = task.id
         
-        if tracker.schedule.isEmpty {
+        if task.schedule.isEmpty {
             
             guard cell.shouldTapButton(cell, date: actualDate) != nil else { return }
             
             taskStore?.deleteTaskWith(id: idOfCell)
             
-            if completedTasks.contains(where: { $0.id == tracker.id }){
+            if completedTasks.contains(where: { $0.id == task.id }){
                 
                 taskRecordStore?.deleteAllRecordsOfTask(idOfCell)
             } else {
                 taskRecordStore?.storeRecord(TaskRecord(id: idOfCell, date: [actualDate]))
             }
-            taskStore?.storeNewTask(tracker, for: category.titleOfCategory)
+            taskStore?.storeNewTask(task, for: category.titleOfCategory)
         } else {
             
             guard let bool = cell.shouldTapButton(cell, date: actualDate) else { return }
@@ -868,7 +868,7 @@ extension PulseViewController: TaskStoreDelegate {
     private func reloadSectionOrData() {
         
         let oldCount = visibleTasks.count
-        let oldVisibleTrackers = visibleTasks
+        let oldVisibleTasks = visibleTasks
         
         checkForVisibleTasksAt(dateDescription: currentDate.description(with: .current))
         
@@ -878,17 +878,17 @@ extension PulseViewController: TaskStoreDelegate {
             
             let newCategory = visibleTasks.first(where: { category in
                 
-                !oldVisibleTrackers.contains(where: { $0.titleOfCategory == category.titleOfCategory})})
+                !oldVisibleTasks.contains(where: { $0.titleOfCategory == category.titleOfCategory})})
             
             if let sectionInsert = visibleTasks.firstIndex(where: { $0.titleOfCategory == newCategory?.titleOfCategory}) {
                 
-                let trackersArray = visibleTasks[sectionInsert].tasksArray
+                let tasksArray = visibleTasks[sectionInsert].tasksArray
                 
                 guard
-                    let sectionDelete = oldVisibleTrackers.firstIndex(where: {$0.tasksArray.contains(where: { tracker in trackersArray.contains(where: { $0.id == tracker.id })})}),
+                    let sectionDelete = oldVisibleTasks.firstIndex(where: {$0.tasksArray.contains(where: { task in tasksArray.contains(where: { $0.id == task.id })})}),
                     
-                        let rowDelete = oldVisibleTrackers[sectionDelete].tasksArray.firstIndex(where: { tracker in
-                            trackersArray.contains(where: { $0.id == tracker.id})
+                        let rowDelete = oldVisibleTasks[sectionDelete].tasksArray.firstIndex(where: { task in
+                            tasksArray.contains(where: { $0.id == task.id})
                         })
                 else {
                     collectionView.performBatchUpdates {
@@ -960,11 +960,11 @@ extension PulseViewController: TaskStoreDelegate {
         let pinedText = NSLocalizedString("pined", comment: "")
         
         if category.titleOfCategory == pinedText {
-            shouldRemoveOrInsertSameTracker(id: idOfCell)
+            shouldRemoveOrInsertSameTask(id: idOfCell)
         }
     }
     
-    private func shouldRemoveOrInsertSameTracker(id: UUID) {
+    private func shouldRemoveOrInsertSameTask(id: UUID) {
         
         guard let index = categories.firstIndex(where: { $0.tasksArray.contains(where: { $0.id == id })}) else {
             return
@@ -974,7 +974,7 @@ extension PulseViewController: TaskStoreDelegate {
             
             insertItemOf(categoryIndex: index)
         } else {
-            deleteSameTrackerWith(id: id, categoryIndex: index)
+            deleteSameTaskWith(id: id, categoryIndex: index)
         }
     }
     
@@ -1000,7 +1000,7 @@ extension PulseViewController: TaskStoreDelegate {
         }
     }
     
-    private func deleteSameTrackerWith(id: UUID, categoryIndex index: Int) {
+    private func deleteSameTaskWith(id: UUID, categoryIndex index: Int) {
         
         tasks = categories[index].tasksArray.filter({ $0.id != id })
         
@@ -1045,13 +1045,13 @@ extension PulseViewController: RecordStoreDelegate {
 
 extension PulseViewController: PulseViewControllerDelegate {
     
-    func addNewTracker(trackerCategory: TaskCategory) {
+    func addNewTask(taskCategory: TaskCategory) {
         self.dismiss(animated: true)
         
-        taskStore?.storeNewTask(trackerCategory.tasksArray[0], for: trackerCategory.titleOfCategory)
+        taskStore?.storeNewTask(taskCategory.tasksArray[0], for: taskCategory.titleOfCategory)
     }
     
-    func didEditTracker(tracker: TrackerToEdit) {
+    func didEditTask(task: TaskToEdit) {
         
         self.dismiss(animated: true) { [weak self] in
             
@@ -1060,22 +1060,22 @@ extension PulseViewController: PulseViewControllerDelegate {
             guard
                 let self,
                 let oldCategory = (categories.filter {
-                    $0.tasksArray.contains(where: {$0.id == tracker.id})
+                    $0.tasksArray.contains(where: {$0.id == task.id})
                 }.first(where: { $0.titleOfCategory != pinedText }))
             else { return }
             
-            let editedTracker = TaskData(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, schedule: tracker.schedule)
+            let editedTask = TaskData(id: task.id, name: task.name, color: task.color, emoji: task.emoji, schedule: task.schedule)
             
-            if !updatePinedTasks().contains(where: { $0.tasksArray.contains(where: { $0.id == tracker.id })}) {
+            if !updatePinedTasks().contains(where: { $0.tasksArray.contains(where: { $0.id == task.id })}) {
                 
                 self.taskStore?.deleteTaskOf(
-                    categoryTitle: oldCategory.titleOfCategory, id: tracker.id)
+                    categoryTitle: oldCategory.titleOfCategory, id: task.id)
                 
                 self.taskStore?.storeNewTask(
-                    editedTracker, for: tracker.titleOfCategory)
+                    editedTask, for: task.titleOfCategory)
             } else {
                 
-                taskStore?.updateTask(editedTracker, for: tracker.titleOfCategory)
+                taskStore?.updateTask(editedTask, for: task.titleOfCategory)
             }
         }
         

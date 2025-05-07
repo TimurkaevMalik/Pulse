@@ -11,7 +11,7 @@
 "whatShouldWeTrack" = "What should we track?";
 "statistic.emptyState.title" = "No data to analyze";
 "categoryView.emptyState.title" = "Habits and events\n can be combined in meaning";
-"delete.confirmation" = "Are you sure you want to delete the tracker?";
+"delete.confirmation" = "Are you sure you want to delete the task?";
 
 "pined" = Pined;
 
@@ -32,16 +32,16 @@
 
 "emoji" = Emoji;
 "color" = Color;
-"trackers" = Trackers;
+"tasks" = Tasks;
 "statistic" = Statistic;
 "category" = Category;
 "schedule" = Schedule;
 
 "searchBar.placeholder" = Search;
 "placeholder.enterCategoryName" = "Enter the name of the category";
-"placeholder.enterTrackerName" = "Enter the name of the tracker";
+"placeholder.enterTaskName" = "Enter the name of the task";
 
-"trackerTypeController.title" = "Creating a Tracker";
+"taskTypeController.title" = "Creating a task";
 "habbitController.title" = "New habbit";
 "habbitController.editing.title" = "Editing habbit";
 "eventController.title" = "New event";
@@ -78,4 +78,4 @@
 "tasksForToday" = "Tasks for today";
 "completedOnes" = "Completed";
 "notCompletedOnes" = "Not Completed";
-"completedTrackers" = "Completed trackers";
+"completedTasks" = "Completed tasks";

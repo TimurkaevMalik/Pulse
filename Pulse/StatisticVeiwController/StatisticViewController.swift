@@ -148,7 +148,7 @@ extension StatisticViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let statisticText = NSLocalizedString("completedTrackers", comment: "")
+        let statisticText = NSLocalizedString("completedTasks", comment: "")
 
         cell.statisticNumber.text = "\(records)"
         cell.cellText.text = statisticText

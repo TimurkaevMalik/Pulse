@@ -11,7 +11,7 @@
 "whatShouldWeTrack" = "Что будем отслеживать?";
 "statistic.emptyState.title" = "Анализировать пока нечего";
 "categoryView.emptyState.title" = "Привычки и события можно\n объединить по смыслу";
-"delete.confirmation" = "Уверены что хотите удалить трекер?";
+"delete.confirmation" = "Уверены что хотите удалить задачу?";
 
 "pined" = "Закрепленные";
 
@@ -32,16 +32,16 @@
 
 "emoji" = "Эмодзи";
 "color" = "Цвет";
-"trackers" = "Трекеры";
+"tasks" = "Задачи";
 "statistic" = "Статистика";
 "category" = "Категория";
 "schedule" = "Расписание";
 
 "searchBar.placeholder" = "Поиск";
 "placeholder.enterCategoryName" = "Введети название категории";
-"placeholder.enterTrackerName" = "Введети название трекера";
+"placeholder.enterTaskName" = "Введети название задачи";
 
-"trackerTypeController.title" = "Создание трекера";
+"taskTypeController.title" = "Создание задачи";
 "habbitController.title" = "Новая привычка";
 "habbitController.editing.title" = "Редактирование привычки";
 "eventController.title" = "Новое событие";
@@ -78,4 +78,4 @@
 "tasksForToday" = "Задачи на сегодня";
 "completedOnes" = "Завершенные";
 "notCompletedOnes" = "Не Завершенные";
-"completedTrackers" = "Трекеров завершено";
+"completedTasks" = "Задач завершено";

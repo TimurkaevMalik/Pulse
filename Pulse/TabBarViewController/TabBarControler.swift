@@ -56,7 +56,7 @@ final class TabBarControler: UITabBarController {
         
         let navigationController = UINavigationController()
         
-        let taskItemTitle = NSLocalizedString("trackers", comment: "Text displayed on the trackerController item")
+        let taskItemTitle = NSLocalizedString("tasks", comment: "Text displayed on the trackerController item")
         let statisticItemTitle = NSLocalizedString("statistic", comment: "Text displayed on the statisticController item")
         
         pulseViewController.delegate = self

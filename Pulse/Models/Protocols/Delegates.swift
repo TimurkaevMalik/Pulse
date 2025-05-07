@@ -32,8 +32,8 @@ protocol TabBarControllerDelegate: AnyObject {
 
 protocol PulseViewControllerDelegate: AnyObject {
     func dismisTaskTypeController()
-    func addNewTracker(trackerCategory: TaskCategory)
-    func didEditTracker(tracker: TrackerToEdit)
+    func addNewTask(taskCategory: TaskCategory)
+    func didEditTask(task: TaskToEdit)
 }
 
 

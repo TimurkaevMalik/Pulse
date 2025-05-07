@@ -38,7 +38,7 @@ final class TaskTypeController: UIViewController {
         guard let delegate else { return }
         
         let type = ActionType.create(value: TaskType.habbit)
-        let viewController = ChosenTrackerController(actionType: type, tracker: nil, delegate: delegate)
+        let viewController = ChosenTaskController(actionType: type, task: nil, delegate: delegate)
         
         present(viewController, animated: true)
     }
@@ -48,7 +48,7 @@ final class TaskTypeController: UIViewController {
         guard let delegate else { return }
         
         let type = ActionType.create(value: TaskType.irregularEvent)
-        let viewController = ChosenTrackerController(actionType: type, tracker: nil, delegate: delegate)
+        let viewController = ChosenTaskController(actionType: type, task: nil, delegate: delegate)
         
         present(viewController, animated: true)
     }
@@ -94,7 +94,7 @@ final class TaskTypeController: UIViewController {
     }
     
     private func configureTitleLable(){
-        let titleLabelText = NSLocalizedString("trackerTypeController.title", comment: "Text displayed on the top of screen")
+        let titleLabelText = NSLocalizedString("taskTypeController.title", comment: "Text displayed on the top of screen")
         
         titleLabel.text = titleLabelText
         titleLabel.font = UIFont.systemFont(ofSize: 16)

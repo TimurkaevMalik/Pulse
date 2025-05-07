@@ -57,7 +57,7 @@ class ChosenTaskController: UIViewController {
     private let colorsArray: [UIColor] = [.ypRed, .ypOrange, .ypMediumBlue, .ypElectricViolet, .ypGreen, .ypViolet, .ypLightPink, .ypCyan, .ypLightGreen, .ypBlueMagneta, .ypTomato, .ypPink, .ypWarmYellow, .ypMediumLightBlue, .ypFrenchViolet, .ypGrape, .ypSlateBlue, .ypMediumLightGreen]
     
     
-    init(actionType: ActionType, tracker: TaskToEdit?,
+    init(actionType: ActionType, task: TaskToEdit?,
          delegate: PulseViewControllerDelegate){
         
         self.actionType = actionType
@@ -65,13 +65,13 @@ class ChosenTaskController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        nameOfCategory = tracker?.titleOfCategory
-        nameOfTracker = tracker?.name
-        colorOfTracker = tracker?.color
-        emojiOfTracker = tracker?.emoji
-        scheduleOfTracker = tracker?.schedule as? [String] ?? []
-        daysCountText = tracker?.daysCount
-        editingTrackerId = tracker?.id
+        nameOfCategory = task?.titleOfCategory
+        nameOfTracker = task?.name
+        colorOfTracker = task?.color
+        emojiOfTracker = task?.emoji
+        scheduleOfTracker = task?.schedule as? [String] ?? []
+        daysCountText = task?.daysCount
+        editingTrackerId = task?.id
     }
     
     required init?(coder: NSCoder) {
@@ -141,7 +141,7 @@ class ChosenTaskController: UIViewController {
             
             let newCategory = TaskCategory(titleOfCategory: nameOfCategory, tasksArray: [newTracker])
             
-            delegate?.addNewTracker(trackerCategory: newCategory)
+            delegate?.addNewTask(taskCategory: newCategory)
             
         case .edit(let value):
             if value == TaskType.habbit {
@@ -157,7 +157,7 @@ class ChosenTaskController: UIViewController {
                 let daysCountText
             else { return }
             
-            delegate?.didEditTracker(tracker: TaskToEdit(
+            delegate?.didEditTask(task: TaskToEdit(
                 titleOfCategory: nameOfCategory, id: id,
                 name: name, color: color, emoji: emoji,
                 schedule: scheduleOfTracker, daysCount: daysCountText))
@@ -379,7 +379,7 @@ class ChosenTaskController: UIViewController {
     private func configureTextField(under anchor: NSLayoutYAxisAnchor,
                                     constant: CGFloat){
         
-        let enterNameText = NSLocalizedString("placeholder.enterTrackerName", comment: "")
+        let enterNameText = NSLocalizedString("placeholder.enterTaskName", comment: "")
         
         textField.placeholder = enterNameText
         textField.text = nameOfTracker

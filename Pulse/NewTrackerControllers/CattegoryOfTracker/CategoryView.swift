@@ -124,7 +124,7 @@ final class CategoryView: UIViewController {
     }
     
     private func configurePlugImage(){
-        centralPlugImage.image = UIImage(named: "TrackerPlug")
+        centralPlugImage.image = UIImage(named: "TaskPlug")
         
         centralPlugImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(centralPlugImage)

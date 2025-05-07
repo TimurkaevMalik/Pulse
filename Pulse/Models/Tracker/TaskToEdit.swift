@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct TrackerToEdit {
+struct TaskToEdit {
     
     let titleOfCategory: String
     let id: UUID
