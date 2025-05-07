@@ -84,6 +84,10 @@ class ChosenTrackerController: UIViewController {
         configureRestOfControllerUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     @objc func didEnterTextInTextField(_ sender: UITextField){
         
         guard
@@ -717,35 +721,24 @@ extension ChosenTrackerController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
         
-        var id: String
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            id = collectionHeaderIdentifier
-        default:
-            id = ""
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
         }
         
         guard
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: id, for: indexPath) as? SupplementaryView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHeaderIdentifier, for: indexPath) as? SupplementaryView
         else {
             return UICollectionReusableView()
         }
         
-        if id == collectionHeaderIdentifier {
-            
-            if indexPath.section == 0 {
-                
-                let emojiText = NSLocalizedString("emoji", comment: "")
-                
-                headerView.titleLabel.text = emojiText
-            } else {
-                let colorText = NSLocalizedString("color", comment: "")
-                
-                headerView.titleLabel.text = colorText
-            }
+        if indexPath.section == 0 {
+            headerView.titleLabel.text = NSLocalizedString("emoji", comment: "")
+        } else {
+            headerView.titleLabel.text = NSLocalizedString("color", comment: "")
         }
         
         return headerView
@@ -832,17 +825,26 @@ extension ChosenTrackerController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 24, left: 0, bottom: 24, right: 0)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        let indexPath = IndexPath(row: 0, section: section)
+        let text: String
+        if section == 0 {
+            text = NSLocalizedString("emoji", comment: "")
+        } else {
+            text = NSLocalizedString("color", comment: "")
+        }
         
-        let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.text = text
+        label.numberOfLines = 0
         
+        let width = collectionView.frame.width - 32
+        let size = label.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
         
-        return headerView.systemLayoutSizeFitting(
-            CGSize(width: collectionView.frame.width, height: 18),
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel)
+        return CGSize(width: collectionView.frame.width, height: size.height)
     }
 }
 
