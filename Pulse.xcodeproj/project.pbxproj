@@ -84,7 +84,7 @@
 		BC2D1FB72BE970C500609ECF /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		BC2D1FB92BE9768700609ECF /* UIColorMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorMarshalling.swift; sourceTree = "<group>"; };
 		BC40A3AF2BDF822F00A86345 /* EmojiCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionCell.swift; sourceTree = "<group>"; };
-		BC40FEF72C048B3100FE4668 /* TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC40FEF72C048B3100FE4668 /* PulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC40FEF92C048B3100FE4668 /* WhiteScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteScreenTests.swift; sourceTree = "<group>"; };
 		BC47D6022BDFC0FF00B63417 /* ColorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionCell.swift; sourceTree = "<group>"; };
 		BC5915762BD1C7E8005058ED /* ScheduleOfTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOfTracker.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		BCB659C52C037AB000A574AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BCB659C72C038F7600A574AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BCB8EADB2BFD33F40053BA61 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		BCC82EE02BBEE8710042D467 /* Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCC82EE02BBEE8710042D467 /* Pulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC82EE32BBEE8710042D467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCC82EE52BBEE8710042D467 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BCC82EEC2BBEE8720042D467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -317,7 +317,7 @@
 		BCC82ED72BBEE8710042D467 = {
 			isa = PBXGroup;
 			children = (
-				BCC82EE22BBEE8710042D467 /* Tracker */,
+				BCC82EE22BBEE8710042D467 /* Pulse */,
 				BC40FEF82C048B3100FE4668 /* TrackerTests */,
 				BCC82EE12BBEE8710042D467 /* Products */,
 				346359C799D9996DA70A958E /* Pods */,
@@ -328,13 +328,13 @@
 		BCC82EE12BBEE8710042D467 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BCC82EE02BBEE8710042D467 /* Tracker.app */,
-				BC40FEF72C048B3100FE4668 /* TrackerTests.xctest */,
+				BCC82EE02BBEE8710042D467 /* Pulse.app */,
+				BC40FEF72C048B3100FE4668 /* PulseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BCC82EE22BBEE8710042D467 /* Tracker */ = {
+		BCC82EE22BBEE8710042D467 /* Pulse */ = {
 			isa = PBXGroup;
 			children = (
 				BCBF2C202BE7ACAF001B6622 /* CoreData */,
@@ -354,7 +354,7 @@
 				BCC82EEE2BBEE8720042D467 /* LaunchScreen.storyboard */,
 				BCC82EF12BBEE8720042D467 /* Info.plist */,
 			);
-			path = Tracker;
+			path = Pulse;
 			sourceTree = "<group>";
 		};
 		BCF6219A2BBF4545001DE986 /* TrackerViewController */ = {
@@ -370,9 +370,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BC40FEF62C048B3100FE4668 /* TrackerTests */ = {
+		BC40FEF62C048B3100FE4668 /* PulseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC40FEFD2C048B3100FE4668 /* Build configuration list for PBXNativeTarget "TrackerTests" */;
+			buildConfigurationList = BC40FEFD2C048B3100FE4668 /* Build configuration list for PBXNativeTarget "PulseTests" */;
 			buildPhases = (
 				163320562A7453B25857CB4C /* [CP] Check Pods Manifest.lock */,
 				BC40FEF32C048B3100FE4668 /* Sources */,
@@ -384,18 +384,18 @@
 			dependencies = (
 				BC40FEFC2C048B3100FE4668 /* PBXTargetDependency */,
 			);
-			name = TrackerTests;
+			name = PulseTests;
 			packageProductDependencies = (
 				BC40FF062C04933F00FE4668 /* InlineSnapshotTesting */,
 				BC40FF082C04933F00FE4668 /* SnapshotTesting */,
 			);
 			productName = TrackerTests;
-			productReference = BC40FEF72C048B3100FE4668 /* TrackerTests.xctest */;
+			productReference = BC40FEF72C048B3100FE4668 /* PulseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BCC82EDF2BBEE8710042D467 /* Tracker */ = {
+		BCC82EDF2BBEE8710042D467 /* Pulse */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BCC82EF42BBEE8720042D467 /* Build configuration list for PBXNativeTarget "Tracker" */;
+			buildConfigurationList = BCC82EF42BBEE8720042D467 /* Build configuration list for PBXNativeTarget "Pulse" */;
 			buildPhases = (
 				22029DF69CF54C77D5256BD8 /* [CP] Check Pods Manifest.lock */,
 				BCC82EDC2BBEE8710042D467 /* Sources */,
@@ -407,9 +407,9 @@
 			);
 			dependencies = (
 			);
-			name = Tracker;
+			name = Pulse;
 			productName = Tracker;
-			productReference = BCC82EE02BBEE8710042D467 /* Tracker.app */;
+			productReference = BCC82EE02BBEE8710042D467 /* Pulse.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -431,7 +431,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BCC82EDB2BBEE8710042D467 /* Build configuration list for PBXProject "Tracker" */;
+			buildConfigurationList = BCC82EDB2BBEE8710042D467 /* Build configuration list for PBXProject "Pulse" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -448,8 +448,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BCC82EDF2BBEE8710042D467 /* Tracker */,
-				BC40FEF62C048B3100FE4668 /* TrackerTests */,
+				BCC82EDF2BBEE8710042D467 /* Pulse */,
+				BC40FEF62C048B3100FE4668 /* PulseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -528,9 +528,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tracker/Pods-Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tracker/Pods-Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -599,7 +603,7 @@
 /* Begin PBXTargetDependency section */
 		BC40FEFC2C048B3100FE4668 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BCC82EDF2BBEE8710042D467 /* Tracker */;
+			target = BCC82EDF2BBEE8710042D467 /* Pulse */;
 			targetProxy = BC40FEFB2C048B3100FE4668 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -655,7 +659,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pulse";
 			};
 			name = Debug;
 		};
@@ -679,7 +683,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pulse";
 			};
 			name = Release;
 		};
@@ -815,7 +819,8 @@
 				DEVELOPMENT_TEAM = 8V4HQNY692;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tracker/Info.plist;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pulse;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -826,7 +831,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.Tracker;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.Pulse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -848,7 +853,8 @@
 				DEVELOPMENT_TEAM = 8V4HQNY692;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tracker/Info.plist;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pulse;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -859,7 +865,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.Tracker;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.practicum.Timurkaev.Pulse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -873,7 +879,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BC40FEFD2C048B3100FE4668 /* Build configuration list for PBXNativeTarget "TrackerTests" */ = {
+		BC40FEFD2C048B3100FE4668 /* Build configuration list for PBXNativeTarget "PulseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC40FEFE2C048B3100FE4668 /* Debug */,
@@ -882,7 +888,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BCC82EDB2BBEE8710042D467 /* Build configuration list for PBXProject "Tracker" */ = {
+		BCC82EDB2BBEE8710042D467 /* Build configuration list for PBXProject "Pulse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCC82EF22BBEE8720042D467 /* Debug */,
@@ -891,7 +897,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BCC82EF42BBEE8720042D467 /* Build configuration list for PBXNativeTarget "Tracker" */ = {
+		BCC82EF42BBEE8720042D467 /* Build configuration list for PBXNativeTarget "Pulse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCC82EF52BBEE8720042D467 /* Debug */,
