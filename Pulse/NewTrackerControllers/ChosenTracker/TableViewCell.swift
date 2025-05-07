@@ -1,6 +1,6 @@
 //
 //  TableViewCell.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 01.05.2024.
 //

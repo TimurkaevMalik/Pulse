@@ -1,6 +1,6 @@
 //
 //  StatisticCell.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 02.06.2024.
 //

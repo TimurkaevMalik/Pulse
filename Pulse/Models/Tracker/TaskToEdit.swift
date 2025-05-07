@@ -1,13 +1,13 @@
 //
-//  TrackerToEdit.swift
-//  Tracker
+//  TaskToEdit.swift
+//  Pulse
 //
 //  Created by Malik Timurkaev on 30.05.2024.
 //
 
 import UIKit
 
-struct TrackerToEdit {
+struct TaskToEdit {
     
     let titleOfCategory: String
     let id: UUID

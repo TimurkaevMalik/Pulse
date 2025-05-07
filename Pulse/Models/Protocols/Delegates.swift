@@ -1,6 +1,6 @@
 //
 //  Protocols.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 12.04.2024.
 //
@@ -8,21 +8,21 @@
 import UIKit
 
 
-protocol TrackerStoreDelegate: AnyObject {
-    func didUpdate(tracker: Tracker, categoryTitle: String)
-    func didDelete(tracker: Tracker)
-    func didAdd(tracker: Tracker, with categoryTitle: String)
+protocol TaskStoreDelegate: AnyObject {
+    func didUpdate(task: TaskData, categoryTitle: String)
+    func didDelete(task: TaskData)
+    func didAdd(task: TaskData, with categoryTitle: String)
 }
 
 protocol CategoryStoreDelegate: AnyObject {
-    func didStoreCategory(_ category: TrackerCategory)
-    func storeDidUpdate(category: TrackerCategory)
+    func didStoreCategory(_ category: TaskCategory)
+    func storeDidUpdate(category: TaskCategory)
 }
 
 protocol RecordStoreDelegate: AnyObject {
-    func didUpdate(record: TrackerRecord)
-    func didDelete(record: TrackerRecord)
-    func didAdd(record: TrackerRecord)
+    func didUpdate(record: TaskRecord)
+    func didDelete(record: TaskRecord)
+    func didAdd(record: TaskRecord)
 }
 
 protocol TabBarControllerDelegate: AnyObject {
@@ -30,10 +30,10 @@ protocol TabBarControllerDelegate: AnyObject {
     func showFilterButton()
 }
 
-protocol TrackerViewControllerDelegate: AnyObject {
-    func dismisTrackerTypeController()
-    func addNewTracker(trackerCategory: TrackerCategory)
-    func didEditTracker(tracker: TrackerToEdit)
+protocol PulseViewControllerDelegate: AnyObject {
+    func dismisTaskTypeController()
+    func addNewTask(taskCategory: TaskCategory)
+    func didEditTask(task: TaskToEdit)
 }
 
 
@@ -41,7 +41,7 @@ protocol FilterControllerDelegate: AnyObject {
     func didChooseFilter()
 }
 
-protocol ScheduleOfTrackerDelegate: AnyObject {
+protocol ScheduleOfTaskDelegate: AnyObject {
     func didRecieveDatesArray(dates: [String])
     func didDismissScreenWithChanges(dates: [String])
 }

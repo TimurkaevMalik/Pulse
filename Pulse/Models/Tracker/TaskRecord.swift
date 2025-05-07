@@ -1,13 +1,13 @@
 //
-//  TrackerRecord.swift
-//  Tracker
+//  TaskRecord.swift
+//  Pulse
 //
 //  Created by Malik Timurkaev on 12.04.2024.
 //
 
 import Foundation
 
-struct TrackerRecord {
+struct TaskRecord {
     
     let id: UUID
     let date: [Date]

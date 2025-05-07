@@ -1,6 +1,6 @@
 //
 //  MakeNewCategory.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 20.05.2024.
 //
@@ -63,7 +63,7 @@ final class NewCategoryView: UIViewController {
         if let nameOfCategory = viewModel.newCategory {
             
             textField.text = nameOfCategory.trimmingCharacters(in: .whitespaces)
-            viewModel.storeNewCategory(TrackerCategory(titleOfCategory: nameOfCategory, trackersArray: []))
+            viewModel.storeNewCategory(TaskCategory(titleOfCategory: nameOfCategory, tasksArray: []))
         } else {
             showWarningLabel(with: enterCategoryName)
             highLightButton()

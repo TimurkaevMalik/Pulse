@@ -1,21 +1,21 @@
 //
-//  CreatingTracker.swift
-//  Tracker
+//  TaskTypeController.swift
+//  Pulse
 //
 //  Created by Malik Timurkaev on 12.04.2024.
 //
 
 import UIKit
 
-final class TrackerTypeController: UIViewController {
+final class TaskTypeController: UIViewController {
     
-    private weak var delegate: TrackerViewControllerDelegate?
+    private weak var delegate: PulseViewControllerDelegate?
     
     let habbit = UIButton()
     let irregularEvent = UIButton()
     let titleLabel = UILabel()
     
-    init(delegate: TrackerViewControllerDelegate) {
+    init(delegate: PulseViewControllerDelegate) {
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,8 +37,8 @@ final class TrackerTypeController: UIViewController {
         
         guard let delegate else { return }
         
-        let type = ActionType.create(value: TrackerType.habbit)
-        let viewController = ChosenTrackerController(actionType: type, tracker: nil, delegate: delegate)
+        let type = ActionType.create(value: TaskType.habbit)
+        let viewController = ChosenTaskController(actionType: type, task: nil, delegate: delegate)
         
         present(viewController, animated: true)
     }
@@ -47,8 +47,8 @@ final class TrackerTypeController: UIViewController {
         
         guard let delegate else { return }
         
-        let type = ActionType.create(value: TrackerType.irregularEvent)
-        let viewController = ChosenTrackerController(actionType: type, tracker: nil, delegate: delegate)
+        let type = ActionType.create(value: TaskType.irregularEvent)
+        let viewController = ChosenTaskController(actionType: type, task: nil, delegate: delegate)
         
         present(viewController, animated: true)
     }
@@ -94,7 +94,7 @@ final class TrackerTypeController: UIViewController {
     }
     
     private func configureTitleLable(){
-        let titleLabelText = NSLocalizedString("trackerTypeController.title", comment: "Text displayed on the top of screen")
+        let titleLabelText = NSLocalizedString("taskTypeController.title", comment: "Text displayed on the top of screen")
         
         titleLabel.text = titleLabelText
         titleLabel.font = UIFont.systemFont(ofSize: 16)

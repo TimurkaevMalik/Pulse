@@ -1,6 +1,6 @@
 //
 //  Binding.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 19.05.2024.
 //

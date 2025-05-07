@@ -1,6 +1,6 @@
 //
 //  TabBarControler.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 04.04.2024.
 //
@@ -10,7 +10,7 @@ import UIKit
 
 final class TabBarControler: UITabBarController {
     
-    private let trackerViewController = TrackerViewController()
+    private let pulseViewController = PulseViewController()
     private let statisticViewController = StatisticViewController()
     
     private lazy var filterButton = UIButton()
@@ -38,7 +38,7 @@ final class TabBarControler: UITabBarController {
         
         AnalyticsService.report(event: "click", params: ["screen": "\(self)", "item": "filter"])
         
-        let viewController = FilterViewController(delegate: trackerViewController)
+        let viewController = FilterViewController(delegate: pulseViewController)
         
         present(viewController, animated: true)
     }
@@ -56,13 +56,13 @@ final class TabBarControler: UITabBarController {
         
         let navigationController = UINavigationController()
         
-        let trackerItemTitle = NSLocalizedString("trackers", comment: "Text displayed on the trackerController item")
+        let taskItemTitle = NSLocalizedString("tasks", comment: "Text displayed on the taskController item")
         let statisticItemTitle = NSLocalizedString("statistic", comment: "Text displayed on the statisticController item")
         
-        trackerViewController.delegate = self
-        trackerViewController.tabBarItem = UITabBarItem(
-            title: trackerItemTitle,
-            image: UIImage(named: "TrackerBarItem"),
+        pulseViewController.delegate = self
+        pulseViewController.tabBarItem = UITabBarItem(
+            title: taskItemTitle,
+            image: UIImage(named: "TaskBarItem"),
             selectedImage: nil)
         
         statisticViewController.tabBarItem = UITabBarItem(
@@ -70,7 +70,7 @@ final class TabBarControler: UITabBarController {
             image: UIImage(named: "StatisticBarItem"),
             selectedImage: nil)
         
-        navigationController.viewControllers = [trackerViewController]
+        navigationController.viewControllers = [pulseViewController]
         
         self.viewControllers = [navigationController,
                                 statisticViewController]

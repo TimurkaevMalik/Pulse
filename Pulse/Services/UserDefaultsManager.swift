@@ -1,6 +1,6 @@
 //
 //  UserDefaultsManager.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 21.05.2024.
 //
@@ -30,15 +30,15 @@ class UserDefaultsManager {
             
             if newValue == true {
                 
-                chosenFilter = "allTrackers"
+                chosenFilter = "allTasks"
                 
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                     return
                 }
                 
-                let trackerCategoryStore = TrackerCategoryStore(appDelegate: appDelegate)
+                let taskCategoryStore = TaskCategoryStore(appDelegate: appDelegate)
                 
-                trackerCategoryStore.storeCategory(TrackerCategory(titleOfCategory: "Pined", trackersArray: []))
+                taskCategoryStore.storeCategory(TaskCategory(titleOfCategory: "Pined", tasksArray: []))
             }
         }
     }

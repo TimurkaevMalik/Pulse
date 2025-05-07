@@ -1,6 +1,6 @@
 //
 //  FilterViewController.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 01.06.2024.
 //
@@ -14,7 +14,7 @@ class FilterViewController: UIViewController {
     private let tableView = UITableView()
     
     private weak var delegate: FilterControllerDelegate?
-    private let filters: [String] = ["allTrackers", "trackersForToday", "completedOnes", "notCompletedOnes"]
+    private let filters: [String] = ["allTasks", "tasksForToday", "completedOnes", "notCompletedOnes"]
 
     
     override func viewDidLoad() {

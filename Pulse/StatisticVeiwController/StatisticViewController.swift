@@ -1,6 +1,6 @@
 //
 //  StatisticViewController.swift
-//  Tracker
+//  Pulse
 //
 //  Created by Malik Timurkaev on 04.04.2024.
 //
@@ -15,7 +15,7 @@ final class StatisticViewController: UIViewController {
     private lazy var centralPlugLabel = UILabel()
     private lazy var centralPlugImage = UIImageView()
     
-    private var trackerRecordStore: TrackerRecordStore?
+    private var taskRecordStore: TaskRecordStore?
     private var records = 0
     
     
@@ -29,7 +29,7 @@ final class StatisticViewController: UIViewController {
     
     private init(appDelegate: AppDelegate) {
         super.init(nibName: nil, bundle: nil)
-        trackerRecordStore = TrackerRecordStore(self, appDelegate: appDelegate)
+        taskRecordStore = TaskRecordStore(self, appDelegate: appDelegate)
     }
     
     required init?(coder: NSCoder) {
@@ -48,11 +48,11 @@ final class StatisticViewController: UIViewController {
     }
     
     private func updateStatistic() {
-        guard let trackerRecords = trackerRecordStore?.fetchAllConvertedRecords() else {
+        guard let taskRecords = taskRecordStore?.fetchAllConvertedRecords() else {
             return
         }
         records = 0
-        trackerRecords.forEach({ records += $0.date.count })
+        taskRecords.forEach({ records += $0.date.count })
         tableView.reloadData()
     }
     
@@ -148,7 +148,7 @@ extension StatisticViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let statisticText = NSLocalizedString("completedTrackers", comment: "")
+        let statisticText = NSLocalizedString("completedTasks", comment: "")
 
         cell.statisticNumber.text = "\(records)"
         cell.cellText.text = statisticText
@@ -166,13 +166,13 @@ extension StatisticViewController: UITableViewDelegate {
 }
 
 extension StatisticViewController: RecordStoreDelegate {
-    func didUpdate(record: TrackerRecord) {
+    func didUpdate(record: TaskRecord) {
         updateStatistic()
     }
-    func didDelete(record: TrackerRecord) {
+    func didDelete(record: TaskRecord) {
         updateStatistic()
     }
-    func didAdd(record: TrackerRecord) {
+    func didAdd(record: TaskRecord) {
         updateStatistic()
     }
 }
