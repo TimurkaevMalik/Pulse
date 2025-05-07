@@ -56,13 +56,13 @@ final class TabBarControler: UITabBarController {
         
         let navigationController = UINavigationController()
         
-        let taskItemTitle = NSLocalizedString("tasks", comment: "Text displayed on the trackerController item")
+        let taskItemTitle = NSLocalizedString("tasks", comment: "Text displayed on the taskController item")
         let statisticItemTitle = NSLocalizedString("statistic", comment: "Text displayed on the statisticController item")
         
         pulseViewController.delegate = self
         pulseViewController.tabBarItem = UITabBarItem(
             title: taskItemTitle,
-            image: UIImage(named: "TrackerBarItem"),
+            image: UIImage(named: "TaskBarItem"),
             selectedImage: nil)
         
         statisticViewController.tabBarItem = UITabBarItem(

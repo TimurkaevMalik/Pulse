@@ -41,7 +41,7 @@ protocol FilterControllerDelegate: AnyObject {
     func didChooseFilter()
 }
 
-protocol ScheduleOfTrackerDelegate: AnyObject {
+protocol ScheduleOfTaskDelegate: AnyObject {
     func didRecieveDatesArray(dates: [String])
     func didDismissScreenWithChanges(dates: [String])
 }

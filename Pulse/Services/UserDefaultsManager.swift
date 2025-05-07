@@ -36,9 +36,9 @@ class UserDefaultsManager {
                     return
                 }
                 
-                let trackerCategoryStore = TaskCategoryStore(appDelegate: appDelegate)
+                let taskCategoryStore = TaskCategoryStore(appDelegate: appDelegate)
                 
-                trackerCategoryStore.storeCategory(TaskCategory(titleOfCategory: "Pined", tasksArray: []))
+                taskCategoryStore.storeCategory(TaskCategory(titleOfCategory: "Pined", tasksArray: []))
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  ScheduleOfTracker.swift
+//  ScheduleOfTask.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 19.04.2024.
@@ -8,9 +8,9 @@
 import UIKit
 
 
-final class ScheduleOfTracker: UIViewController {
+final class ScheduleOfTask: UIViewController {
     
-    private weak var delegate: ScheduleOfTrackerDelegate?
+    private weak var delegate: ScheduleOfTaskDelegate?
     
     private let doneButton = UIButton()
     private let titleLabel = UILabel()
@@ -20,7 +20,7 @@ final class ScheduleOfTracker: UIViewController {
     private let daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     
     
-    init(delegate: ScheduleOfTrackerDelegate,
+    init(delegate: ScheduleOfTaskDelegate,
          wasDatesChosen dates: [String]){
         
         chosenDates = dates
@@ -190,7 +190,7 @@ final class ScheduleOfTracker: UIViewController {
     }
 }
 
-extension ScheduleOfTracker: UITableViewDataSource {
+extension ScheduleOfTask: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return daysOfWeek.count
@@ -221,7 +221,7 @@ extension ScheduleOfTracker: UITableViewDataSource {
     }
 }
 
-extension ScheduleOfTracker: UITableViewDelegate {
+extension ScheduleOfTask: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         

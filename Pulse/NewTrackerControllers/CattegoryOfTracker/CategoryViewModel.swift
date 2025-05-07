@@ -11,7 +11,7 @@ final class CategoryViewModel {
     
     weak var newCategoryDelegate: NewCategoryViewProtocol?
     private weak var categoryModelDelegate: CategoryModelDelegate?
-    private let trackerCategoryStore: TaskCategoryStore
+    private let taskCategoryStore: TaskCategoryStore
     
     private(set) var newCategory: String?
     private(set) var chosenCategory: String? {
@@ -34,10 +34,10 @@ final class CategoryViewModel {
          chosenCategory: String?,
          categoryModelDelegate: CategoryModelDelegate) {
         
-        self.trackerCategoryStore = categoryStore
+        self.taskCategoryStore = categoryStore
         self.chosenCategory = chosenCategory
         self.categoryModelDelegate = categoryModelDelegate
-        trackerCategoryStore.delegate = self
+        taskCategoryStore.delegate = self
         categories = fetchCategories()
     }
     
@@ -63,12 +63,12 @@ final class CategoryViewModel {
     }
     
     func storeNewCategory(_ category: TaskCategory) {
-        trackerCategoryStore.storeCategory(category)
+        taskCategoryStore.storeCategory(category)
     }
     
     private func fetchCategories() -> [String] {
         
-        guard let categoryCoreData = trackerCategoryStore.fetchAllCategories() else {
+        guard let categoryCoreData = taskCategoryStore.fetchAllCategories() else {
             return []
         }
         let convertedCategories = convertToCategotyArray(categoryCoreData)

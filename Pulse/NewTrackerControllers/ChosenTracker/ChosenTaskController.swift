@@ -1,5 +1,5 @@
 //
-//  MakeTrackerController.swift
+//  ChosenTaskController.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 14.04.2024.
@@ -39,13 +39,13 @@ class ChosenTaskController: UIViewController {
     private var chosenColorCell: UICollectionViewCell?
     private var chosenEmojiCell: UICollectionViewCell?
     
-    private var scheduleOfTracker: [String] = []
+    private var scheduleOfTask: [String] = []
     private var nameOfCategory: String?
-    private var nameOfTracker: String?
-    private var colorOfTracker: UIColor?
-    private var emojiOfTracker: String?
+    private var nameOfTask: String?
+    private var colorOfTask: UIColor?
+    private var emojiOfTask: String?
     private var daysCountText: String?
-    private var editingTrackerId: UUID?
+    private var editingTaskId: UUID?
     private let warningLabelTitle = NSLocalizedString("cancel", comment: "Text displayed on cancel button")
     
     private let tableCellIdentifier = "tableCellIdentifier"
@@ -66,12 +66,12 @@ class ChosenTaskController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         nameOfCategory = task?.titleOfCategory
-        nameOfTracker = task?.name
-        colorOfTracker = task?.color
-        emojiOfTracker = task?.emoji
-        scheduleOfTracker = task?.schedule as? [String] ?? []
+        nameOfTask = task?.name
+        colorOfTask = task?.color
+        emojiOfTask = task?.emoji
+        scheduleOfTask = task?.schedule as? [String] ?? []
         daysCountText = task?.daysCount
-        editingTrackerId = task?.id
+        editingTaskId = task?.id
     }
     
     required init?(coder: NSCoder) {
@@ -95,7 +95,7 @@ class ChosenTaskController: UIViewController {
             !text.isEmpty,
             !text.filter({ $0 != Character(" ") }).isEmpty
         else {
-            nameOfTracker = nil
+            nameOfTask = nil
             clearTextFieldButtonTapped()
             shouldActivateSaveButton()
             return
@@ -116,9 +116,9 @@ class ChosenTaskController: UIViewController {
         
         guard
             let nameOfCategory = nameOfCategory,
-            let name = nameOfTracker,
-            let color = colorOfTracker,
-            let emoji = emojiOfTracker
+            let name = nameOfTask,
+            let color = colorOfTask,
+            let emoji = emojiOfTask
         else {
             showWarningLabel(with: fieldsfullnessText)
             highLightButton()
@@ -130,22 +130,22 @@ class ChosenTaskController: UIViewController {
         case .create(let value):
             
             if value == TaskType.habbit {
-                guard !scheduleOfTracker.isEmpty else {
+                guard !scheduleOfTask.isEmpty else {
                     showWarningLabel(with: fieldsfullnessText)
                     highLightButton()
                     return
                 }
             }
             
-            let newTracker = TaskData(id: UUID(), name: name, color: color, emoji: emoji, schedule: scheduleOfTracker)
+            let newTask = TaskData(id: UUID(), name: name, color: color, emoji: emoji, schedule: scheduleOfTask)
             
-            let newCategory = TaskCategory(titleOfCategory: nameOfCategory, tasksArray: [newTracker])
+            let newCategory = TaskCategory(titleOfCategory: nameOfCategory, tasksArray: [newTask])
             
             delegate?.addNewTask(taskCategory: newCategory)
             
         case .edit(let value):
             if value == TaskType.habbit {
-                guard !scheduleOfTracker.isEmpty else {
+                guard !scheduleOfTask.isEmpty else {
                     showWarningLabel(with: fieldsfullnessText)
                     highLightButton()
                     return
@@ -153,14 +153,14 @@ class ChosenTaskController: UIViewController {
             }
             
             guard 
-                let id = editingTrackerId,
+                let id = editingTaskId,
                 let daysCountText
             else { return }
             
             delegate?.didEditTask(task: TaskToEdit(
                 titleOfCategory: nameOfCategory, id: id,
                 name: name, color: color, emoji: emoji,
-                schedule: scheduleOfTracker, daysCount: daysCountText))
+                schedule: scheduleOfTask, daysCount: daysCountText))
             
         }
     }
@@ -382,7 +382,7 @@ class ChosenTaskController: UIViewController {
         let enterNameText = NSLocalizedString("placeholder.enterTaskName", comment: "")
         
         textField.placeholder = enterNameText
-        textField.text = nameOfTracker
+        textField.text = nameOfTask
         textField.delegate = self
         textField.backgroundColor = .ypMediumLightGray
         textField.layer.cornerRadius = 16
@@ -523,17 +523,17 @@ class ChosenTaskController: UIViewController {
     private func shouldActivateSaveButton(){
         
         if tableViewCells.count > 1 {
-            guard !scheduleOfTracker.isEmpty else {
+            guard !scheduleOfTask.isEmpty else {
                 saveButton.backgroundColor = .ypDarkGray
                 return
             }
         }
         
         guard
-            nameOfTracker  != nil,
+            nameOfTask  != nil,
             nameOfCategory != nil,
-            emojiOfTracker != nil,
-            colorOfTracker != nil
+            emojiOfTask != nil,
+            colorOfTask != nil
         else {
             
             saveButton.backgroundColor = .ypDarkGray
@@ -543,12 +543,12 @@ class ChosenTaskController: UIViewController {
         saveButton.backgroundColor = .ypBlack
     }
     
-    private func validateNameOfTracker(_ text: String) {
+    private func validateNameOfTask(_ text: String) {
         
         if !text.isEmpty, !text.filter({ $0 != Character(" ") }).isEmpty {
-            nameOfTracker = text.trimmingCharacters(in: .whitespaces)
+            nameOfTask = text.trimmingCharacters(in: .whitespaces)
         } else {
-            nameOfTracker = nil
+            nameOfTask = nil
         }
     }
     
@@ -605,7 +605,7 @@ extension ChosenTaskController: UITableViewDataSource {
                                       text: nameOfCategory ?? "")
             
         } else if indexPath.row == 1 {
-            shouldAddDates(scheduleOfTracker, on: cell)
+            shouldAddDates(scheduleOfTask, on: cell)
         }
         
         cell.separatorInset = UIEdgeInsets(top: 0.3, left: 16, bottom: 0.3, right: 16)
@@ -643,7 +643,7 @@ extension ChosenTaskController: UITableViewDelegate {
         
         if indexPath.row == 1 {
             
-            let viewControler = ScheduleOfTracker(delegate: self, wasDatesChosen: scheduleOfTracker)
+            let viewControler = ScheduleOfTask(delegate: self, wasDatesChosen: scheduleOfTask)
             present(viewControler, animated: true)
         }
     }
@@ -685,7 +685,7 @@ extension ChosenTaskController: UICollectionViewDataSource {
             cell.layer.cornerRadius = 16
             cell.cellLabel.text = emojisArray[indexPath.row]
             
-            if emojisArray[indexPath.row] == emojiOfTracker {
+            if emojisArray[indexPath.row] == emojiOfTask {
                 
                 cell.isSelected = true
                 cell.backgroundColor = .ypMediumLightGray
@@ -704,12 +704,12 @@ extension ChosenTaskController: UICollectionViewDataSource {
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 8
             
-            if let colorOfTracker {
+            if let colorOfTask {
                 
                 let colorCellHex = colorMarshalling.hexString(from: colorsArray[indexPath.row])
-                let trackerColorHex = colorMarshalling.hexString(from: colorOfTracker)
+                let taskColorHex = colorMarshalling.hexString(from: colorOfTask)
                 
-                if colorCellHex == trackerColorHex {
+                if colorCellHex == taskColorHex {
                     
                     cell.layer.borderWidth = 3
                     cell.layer.borderColor = colorsArray[indexPath.row].withAlphaComponent(0.3).cgColor
@@ -769,10 +769,10 @@ extension ChosenTaskController: UICollectionViewDelegate {
         
         if indexPath.section == 0 {
             chosenEmojiCell = nil
-            emojiOfTracker = nil
+            emojiOfTask = nil
         } else {
             chosenColorCell = nil
-            colorOfTracker = nil
+            colorOfTask = nil
         }
         
         shouldActivateSaveButton()
@@ -793,14 +793,14 @@ extension ChosenTaskController: UICollectionViewDelegate {
         if indexPath.section == 0 {
             cell.backgroundColor = .ypColorMilk
             chosenEmojiCell = cell
-            emojiOfTracker = emojisArray[indexPath.row]
+            emojiOfTask = emojisArray[indexPath.row]
             
         } else {
             
             cell.layer.borderWidth = 3
             cell.layer.borderColor = colorsArray[indexPath.row].withAlphaComponent(0.3).cgColor
             chosenColorCell = cell
-            colorOfTracker = colorsArray[indexPath.row]
+            colorOfTask = colorsArray[indexPath.row]
         }
         
         cell.isSelected = true
@@ -848,14 +848,14 @@ extension ChosenTaskController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ChosenTaskController: ScheduleOfTrackerDelegate {
+extension ChosenTaskController: ScheduleOfTaskDelegate {
     
     func didDismissScreenWithChanges(dates: [String]) {
         guard let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TableViewCell else {
             return
         }
         
-        scheduleOfTracker = dates
+        scheduleOfTask = dates
         shouldAddDates(dates, on: cell)
         shouldActivateSaveButton()
     }
@@ -865,7 +865,7 @@ extension ChosenTaskController: ScheduleOfTrackerDelegate {
             return
         }
         
-        scheduleOfTracker = dates
+        scheduleOfTask = dates
         shouldAddDates(dates, on: cell)
         shouldActivateSaveButton()
     }
@@ -950,7 +950,7 @@ extension ChosenTaskController: UITextFieldDelegate {
             return false
         }
         
-        validateNameOfTracker(newString)
+        validateNameOfTask(newString)
         shouldActivateSaveButton()
         
         return true

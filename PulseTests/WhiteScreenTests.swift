@@ -1,5 +1,5 @@
 //
-//  TrackerTests.swift
+//  WhiteScreenTests.swift
 //  PulseTests
 //
 //  Created by Malik Timurkaev on 27.05.2024.

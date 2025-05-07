@@ -1,5 +1,5 @@
 //
-//  CattegoryOfTracker.swift
+//  CattegoryView.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 19.04.2024.
