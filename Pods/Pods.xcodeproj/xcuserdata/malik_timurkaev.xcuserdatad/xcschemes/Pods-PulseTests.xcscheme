@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "441A01153741DDE126E328E63657FB33"
-               BuildableName = "Pods_Tracker.framework"
-               BlueprintName = "Pods-Tracker"
+               BlueprintIdentifier = "43B40335A712146A5A21C90A7757E872"
+               BuildableName = "Pods_PulseTests.framework"
+               BlueprintName = "Pods-PulseTests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
