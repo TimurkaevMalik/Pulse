@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_TrackerVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_TrackerVersionString[];
+FOUNDATION_EXPORT double Pods_PulseVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_PulseVersionString[];
 
