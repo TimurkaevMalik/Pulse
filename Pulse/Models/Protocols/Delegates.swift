@@ -30,8 +30,8 @@ protocol TabBarControllerDelegate: AnyObject {
     func showFilterButton()
 }
 
-protocol TrackerViewControllerDelegate: AnyObject {
-    func dismisTrackerTypeController()
+protocol PulseViewControllerDelegate: AnyObject {
+    func dismisTaskTypeController()
     func addNewTracker(trackerCategory: TrackerCategory)
     func didEditTracker(tracker: TrackerToEdit)
 }

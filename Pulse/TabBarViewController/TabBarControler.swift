@@ -10,7 +10,7 @@ import UIKit
 
 final class TabBarControler: UITabBarController {
     
-    private let trackerViewController = TrackerViewController()
+    private let trackerViewController = PulseViewController()
     private let statisticViewController = StatisticViewController()
     
     private lazy var filterButton = UIButton()

@@ -9,7 +9,7 @@ import UIKit
 
 class ChosenTrackerController: UIViewController {
     
-    private weak var delegate: TrackerViewControllerDelegate?
+    private weak var delegate: PulseViewControllerDelegate?
     
     private let textField = UITextField()
     private let clearTextFieldButton = UIButton(frame: CGRect(x: 0, y: 0, width: 17, height: 17))
@@ -58,7 +58,7 @@ class ChosenTrackerController: UIViewController {
     
     
     init(actionType: ActionType, tracker: TrackerToEdit?,
-         delegate: TrackerViewControllerDelegate){
+         delegate: PulseViewControllerDelegate){
         
         self.actionType = actionType
         self.delegate = delegate
@@ -166,7 +166,7 @@ class ChosenTrackerController: UIViewController {
     }
     
     @objc func cancelButtonTapped(){
-        delegate?.dismisTrackerTypeController()
+        delegate?.dismisTaskTypeController()
     }
     
     private func configureRestOfControllerUI() {

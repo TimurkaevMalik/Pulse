@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class TrackerViewController: UIViewController {
+final class PulseViewController: UIViewController {
     var count = 0
     private let datePicker = UIDatePicker()
     private lazy var plusButton = UIButton()
@@ -107,7 +107,7 @@ final class TrackerViewController: UIViewController {
         
         AnalyticsService.report(event: "click", params: ["screen": "\(self)", "item": "add_track"])
         
-        let viewController = TrackerTypeController(delegate: self)
+        let viewController = TaskTypeController(delegate: self)
         
         present(viewController, animated: true)
     }
@@ -461,7 +461,7 @@ final class TrackerViewController: UIViewController {
     }
 }
 
-extension TrackerViewController: UICollectionViewDataSource {
+extension PulseViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         if visibleTrackers.isEmpty {
@@ -522,7 +522,7 @@ extension TrackerViewController: UICollectionViewDataSource {
     }
 }
 
-extension TrackerViewController: UICollectionViewDelegateFlowLayout {
+extension PulseViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -556,7 +556,7 @@ extension TrackerViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension TrackerViewController: UICollectionViewDelegate {
+extension PulseViewController: UICollectionViewDelegate {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -568,7 +568,7 @@ extension TrackerViewController: UICollectionViewDelegate {
     }
 }
 
-extension TrackerViewController: UISearchResultsUpdating {
+extension PulseViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController){
         
@@ -608,7 +608,7 @@ extension TrackerViewController: UISearchResultsUpdating {
     }
 }
 
-extension TrackerViewController: CollectionViewCellDelegate {
+extension PulseViewController: CollectionViewCellDelegate {
     
     func contextMenuForCell(_ cell: CollectionViewCell) -> UIContextMenuConfiguration? {
         
@@ -827,7 +827,7 @@ extension TrackerViewController: CollectionViewCellDelegate {
     }
 }
 
-extension TrackerViewController: TrackerStoreDelegate {
+extension PulseViewController: TrackerStoreDelegate {
     
     func didAdd(tracker: Tracker, with categoryTitle: String) {
         
@@ -1011,7 +1011,7 @@ extension TrackerViewController: TrackerStoreDelegate {
     
 }
 
-extension TrackerViewController: RecordStoreDelegate {
+extension PulseViewController: RecordStoreDelegate {
     func didAdd(record: TrackerRecord) {
         
         completedTrackers.append(record)
@@ -1043,7 +1043,7 @@ extension TrackerViewController: RecordStoreDelegate {
     }
 }
 
-extension TrackerViewController: TrackerViewControllerDelegate {
+extension PulseViewController: PulseViewControllerDelegate {
     
     func addNewTracker(trackerCategory: TrackerCategory) {
         self.dismiss(animated: true)
@@ -1081,12 +1081,12 @@ extension TrackerViewController: TrackerViewControllerDelegate {
         
     }
     
-    func dismisTrackerTypeController() {
+    func dismisTaskTypeController() {
         self.dismiss(animated: true)
     }
 }
 
-extension TrackerViewController: FilterControllerDelegate {
+extension PulseViewController: FilterControllerDelegate {
     
     func didChooseFilter() {
         

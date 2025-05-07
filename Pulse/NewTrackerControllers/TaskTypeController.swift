@@ -1,5 +1,5 @@
 //
-//  CreatingTracker.swift
+//  TaskTypeController.swift
 //  Pulse
 //
 //  Created by Malik Timurkaev on 12.04.2024.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class TrackerTypeController: UIViewController {
+final class TaskTypeController: UIViewController {
     
-    private weak var delegate: TrackerViewControllerDelegate?
+    private weak var delegate: PulseViewControllerDelegate?
     
     let habbit = UIButton()
     let irregularEvent = UIButton()
     let titleLabel = UILabel()
     
-    init(delegate: TrackerViewControllerDelegate) {
+    init(delegate: PulseViewControllerDelegate) {
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
